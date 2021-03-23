@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Signin</title>
+</head>
+<style>
+    .container {
+        margin: 90px auto;
+        padding: 80px;
+        width: 250px;
+        height: 300px;
+        float: center;
+        background-color: rgb(238, 210, 243);
+    }
+</style>
+
+<body>
+    <div id="app"/>
+
+
+    <script type="text/babel">
+    class Sign extends React.Component{
+        render(){
+            return(
+                <div id="s">
+                <p>   welcome:{this.props.name}</p>
+                </div>
+
+               
+            ) ;       
+        }
+        
+        }
+        
+    
+
+        class App extends React.Component {
+            state = {
+                username: "",
+                password: "",
+                res: ""
+            };
+
+            render() {
+                    if (this.state.username !="" && this.state.password!="" && this.state.res!= "" ) {
+                        return this.renderSign();
+                    } else {
+                        return this.renderSign2();
+                    }
+                }
+            renderSign(){
+                let name=this.state.username;
+                return (
+
+                    <Sign name={name} />
+                )
+            }
+
+            renderSign2() {
+                return (
+                    <div className="container">
+                        <button >signin</button>
+                        <button onClick={this.signup} >signup</button>
+
+                        <p>Username:</p>
+                        <input onChange={this.UpdateResponse1} value={this.state.username} placeholder="username"
+                        />
+                        <p>Password</p>
+                        <input type="Password" onChange={this.UpdateResponse2} value={this.state.password} placeholder="password"
+                        />
+                        <br></br>
+
+                        <br></br>
+                        <button onClick={this.submit} onChange={this.UpdateResponse3} value={this.state.res}>submit</button>
+
+
+                    </div>
+                );
+            }
+
+            UpdateResponse1 = (event) => {
+                    this.setState({username:(event.target.value) });   
+                    
+
+
+                }
+                UpdateResponse2 = (event) => {
+                    this.setState({ password:(event.target.value) });   
+                    
+                }
+                UpdateResponse3 = (event) => {
+                    this.setState({res:(event.target.value) });   
+                    
+                }
+
+
+
+
+            submit = (e) => {
+                this.setState({
+                        
+                        res: this.state.username
+                        
+                    });
+
+
+
+            }
+        };
+
+
+
+        ReactDOM.render(<App />, document.querySelector("#app"));
+
+    </script>
+</body>
+
+</html>
